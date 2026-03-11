@@ -14,15 +14,28 @@
         static List<int> PrimeSeive(int MaxNumber)
         {
             List<int> primes = new List<int>();
-            bool[] numbers = new bool[MaxNumber+1];
+            bool[] numbers = new bool[MaxNumber + 1];
             //Set all numbers in the array from 2 to MaxNumber to true
+            for (i = 0; i < MaxNumber + 1; i++)
+            {
+                numbers[i] = true;
+            }
             // for i = 2, 3, 4, ..., not exceeding √n do
             // if numbers[i] is true
             //    for j = i2, i2 + i, i2 + 2i, i2 + 3i, ..., not exceeding n do
             //            set numbers[j] := false
-
-
-            for(int i = 0;i<numbers.Length;i++)
+            for (i = 2; i * i < MaxNumber; i++) 
+            {
+                if (numbers[i] == true)
+                {
+                    for (j = 2; i * j < MaxNumber; j++)
+                    {
+                        numbers[i * j] = false;
+                    }
+                }
+            }
+            
+            for(int i = 0; i < numbers.Length; i++)
             {
                 if (numbers[i])
                 {
